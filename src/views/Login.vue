@@ -16,12 +16,17 @@
           </div>
           <button type="submit" class="btn btn-primary">Enter Chat</button>
         </form>
+        <div class="login-buttons">
+          <button v-on:click="googleLogin" class="login-button">Google</button>
+          <button v-on:click="facebookLogin" class="login-button">Facebook</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase';
 export default {
   name: "login",
   data() {
@@ -37,6 +42,35 @@ export default {
       } else {
         this.errorText = "Please enter a name first!";
       }
+    },
+    googleLogin(){
+      var provider = new firebase.auth.GoogleAuthProvider();
+      this.signInWithPopup(provider);
+    },
+    facebookLogin(){
+      var provider = new firebase.auth.FacebookAuthProvider();
+      this.signInWithPopup(provider);
+    },
+    signInWithPopup(provider) {
+      firebase.auth().signInWithPopup(provider).then(result => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        // var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        console.log(user.displayName);
+        this.$router.push({ name: "Chat", params: { name: user.displayName } });
+      }).catch(error => {
+        // Handle Errors here.
+        console.log("Error logging in with Google!")
+        var errorCode = error.code;
+        console.log(`errorCode: ${errorCode}`);
+        var errorMessage = error.message;
+        console.log(`errorMessage: ${errorMessage}`);
+        var email = error.email;
+        console.log(`email: ${email}`);
+        var credential = error.credential;
+        console.log(`credential: ${credential}`);
+      });
     }
   }
 };
@@ -49,5 +83,18 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.login-buttons {
+  max-width: 450px;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login-button {
+    max-width: 450px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 </style>
