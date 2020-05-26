@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "npm run build",
+    "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
@@ -15,6 +17,7 @@
     "firebase": "^7.14.5",
     "jquery": "^3.5.1",
     "moment": "^2.26.0",
+    "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "vue": "^2.6.11",
     "vue-chat-scroll": "^1.4.0",
@@ -33,6 +36,8 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^1.19.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "node": "^14.3.0",
+    "serve-static": "^1.14.1"
   }
 }
