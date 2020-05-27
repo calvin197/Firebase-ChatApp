@@ -20,7 +20,6 @@
     "express-static-gzip": "^2.0.6",
     "firebase": "^7.14.5",
     "jquery": "^3.5.1",
-    "moment": "^2.26.0",
     "node": "^14.3.0",
     "path": "^0.12.7",
     "popper.js": "^1.16.1",
