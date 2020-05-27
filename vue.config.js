@@ -18,6 +18,16 @@ module.exports = {
           minRatio: 0.8
         })
       ]
+    },   
+    // vue.config.js
+    chainWebpack: (config) => {
+      // Alter prefetch settings:
+      config.plugin('prefetch').tap(options => {
+        if (!options[0].fileBlacklist) options[0].fileBlacklist = []
+        options[0].fileBlacklist.push(/\.(css)$/)
+        return options
+      })
+      
     }
   }
 
