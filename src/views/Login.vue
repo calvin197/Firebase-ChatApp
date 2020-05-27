@@ -61,7 +61,7 @@ export default {
         this.$router.push({ name: "Chat", params: { name: user.displayName } });
       }).catch(error => {
         // Handle Errors here.
-        console.log("Error logging in with Google!")
+        console.log("Error logging in!")
         var errorCode = error.code;
         console.log(`errorCode: ${errorCode}`);
         var errorMessage = error.message;
