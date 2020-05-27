@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import "@/firebase/init";
 import { auth } from 'firebase/app';
 export default {
   name: "login",
@@ -57,7 +58,6 @@ export default {
         // var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-        console.log(user.displayName);
         this.$router.push({ name: "Chat", params: { name: user.displayName } });
       }).catch(error => {
         // Handle Errors here.
