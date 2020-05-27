@@ -1,8 +1,12 @@
 const express = require('express');
-const serveStatic = require("serve-static")
+const expressStaticGzip = require('express-static-gzip');
+
 const path = require('path');
 app = express();
-app.use(serveStatic(path.join(__dirname, 'dist')));
+app.use(expressStaticGzip(path.join(__dirname, 'dist'), {
+    enableBrotli: true,
+    orderPreference: ['br', 'gz']
+ }));
 app.get(/.*/, (req, res) => {
     res.redirect('/');
 })
