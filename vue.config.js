@@ -19,6 +19,7 @@ module.exports = {
         })
       ]
     },   
+    /*
     // vue.config.js
     chainWebpack: (config) => {
       // Alter prefetch settings:
@@ -29,6 +30,7 @@ module.exports = {
       })
       
     }
+    */
   }
 
   
