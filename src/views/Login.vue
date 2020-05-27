@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+import { auth } from 'firebase/app';
 export default {
   name: "login",
   data() {
@@ -44,15 +44,15 @@ export default {
       }
     },
     googleLogin(){
-      var provider = new firebase.auth.GoogleAuthProvider();
+      var provider = new auth.GoogleAuthProvider();
       this.signInWithPopup(provider);
     },
     facebookLogin(){
-      var provider = new firebase.auth.FacebookAuthProvider();
+      var provider = new auth.FacebookAuthProvider();
       this.signInWithPopup(provider);
     },
     signInWithPopup(provider) {
-      firebase.auth().signInWithPopup(provider).then(result => {
+      auth().signInWithPopup(provider).then(result => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         // var token = result.credential.accessToken;
         // The signed-in user info.
