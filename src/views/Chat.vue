@@ -4,7 +4,7 @@
     <h5 class="text-secondary text-center">Powered by Vue.js & Firebase</h5>
     <div class="card">
       <div class="card-body">
-        <p class="nomessages text-secondary" v-if="messages.length == 0">
+        <p class="nomessages text-secondary" v-if="activeMessages.length == 0">
           [No messages yet!]
         </p>
         <div class="messages" v-chat-scroll="{ always: false, smooth: true }">
