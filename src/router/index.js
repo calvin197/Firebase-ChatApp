@@ -1,10 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Login from "../views/Login.vue";
-import Chat from "../views/Chat.vue";
+import Login from "@/views/Login.vue";
 
 Vue.use(VueRouter);
-
+function lazyLoad(view){
+  return() => import(`@/views/${view}.vue`)
+}
 const routes = [
   {
     path: "/",
@@ -14,7 +15,7 @@ const routes = [
   {
     path: "/chat",
     name: "Chat",
-    component: Chat,
+    component: lazyLoad('Chat'),
     props: true,
     // prevent user going to chat view without logging in
     beforeEnter: (to, from, next) => {
