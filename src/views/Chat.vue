@@ -57,7 +57,6 @@ export default {
     let numToHide = null;
     let numToShow;
     let i = 0;
-    console.log("status: " + this.status);
     if (this.status == "admin") numToShow = 50;
     else if (this.status == "Guest") numToShow = 0;
     else numToShow = 20;
@@ -65,8 +64,6 @@ export default {
       if (numToHide == null) numToHide = snapshot.size - numToShow;
       snapshot.docChanges().forEach(change => {
         let doc = change.doc;
-        console.log(change.type);
-        console.log(change.doc.id);
         if (change.type == "removed") {
           for (let i = 0; i < this.messages.length; i++) {
             if (this.messages[i].id == doc.id) {
