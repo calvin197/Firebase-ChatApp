@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "@/views/Login.vue";
-import Register from "@/views/Register.vue"
 
 Vue.use(VueRouter);
 function lazyLoad(view){
@@ -16,7 +15,7 @@ const routes = [
   {
     path: "/register",
     name: "register",
-    component: Register
+    component: lazyLoad('Register')
   },
   {
     path: "/chat",
