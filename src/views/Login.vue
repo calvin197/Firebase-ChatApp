@@ -1,32 +1,59 @@
 <template>
   <div class="container">
-    <div class="card login">
-      <div class="card-body">
-        <h2 class="card-title text-center">Login</h2>
-        <form v-if="isGuest" @submit.prevent="login" class="text-center">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Please enter your name..."
-              name="name"
-              v-model="name"
-            />
-            <p v-if="errorText" class="text-danger">{{ errorText }}</p>
-          </div>
-          <button type="submit" class="btn btn-primary">
-            Sign in as guest
-          </button>
-        </form>
-        <div class="login-buttons">
-          <button v-if="!isGuest" v-on:click="signAsGuest" class="login-button">
-            Guest
-          </button>
-          <button v-on:click="googleLogin" class="login-button">Google</button>
-          <button v-on:click="facebookLogin" class="login-button">
-            Facebook
-          </button>
+    <div class="card login card-panel green white-text center">
+      <h3>Login</h3>
+      <form action="index.html" v-if="!isGuest">
+        <div class="input-field">
+          <i class="material-icons prefix">email</i>
+          <input type="email" id="email" v-model="email" />
+          <label class="white-text" for="email">Email Address</label>
         </div>
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <input type="password" id="password" v-model="password" />
+          <label class="white-text" for="password">Password</label>
+        </div>
+        <button
+          v-on:click="login"
+          class="button btn btn-large btn-extended grey lighten-4 black-text"
+        >
+          Login
+        </button>
+        <router-link
+          to="/register"
+          tag="button"
+          class="button btn btn-large btn-extended grey lighten-4 black-text"
+          >Register</router-link
+        >
+      </form>
+      <form v-if="isGuest" @submit.prevent="login" class="text-center">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Please enter your name..."
+            name="name"
+            v-model="name"
+          />
+          <p v-if="errorText" class="text-danger">{{ errorText }}</p>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-large btn-extended blue lighten-4 white-text"
+        >
+          Sign in as guest
+        </button>
+      </form>
+      <div class="login-buttons">
+        <button v-if="!isGuest" v-on:click="signAsGuest" class="button btn grey lighten-4 black-text">
+          Guest
+        </button>
+        <button v-on:click="googleLogin" class="button btn grey lighten-4 black-text">
+          Google
+        </button>
+        <button v-on:click="facebookLogin" class="button btn grey lighten-4 black-text"> 
+          Facebook
+        </button>
       </div>
     </div>
   </div>
@@ -111,10 +138,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-.login-button {
-  max-width: 450px;
-  margin-top: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
+.button {
+  margin: 5px
 }
 </style>
