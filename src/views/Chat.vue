@@ -37,7 +37,6 @@
 import CreateMessage from "@/components/CreateMessage";
 import fb from "@/firebase/init";
 let firestore = fb.firestore;
-console.log(firestore);
 export default {
   name: "Chat",
   props: ["name", "status"],
