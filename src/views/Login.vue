@@ -5,10 +5,19 @@
         Sign in
       </h1>
       <div class="social-login">
-        <button v-on:click="facebookLogin" class="btn facebook-btn social-btn" type="button">
+        <button
+          v-on:click="facebookLogin"
+          class="btn facebook-btn social-btn"
+          type="button"
+        >
           <span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span>
         </button>
-        <button v-on:click="googleLogin" class="btn google-btn social-btn" color="black" type="button">
+        <button
+          v-on:click="googleLogin"
+          class="btn google-btn social-btn"
+          color="black"
+          type="button"
+        >
           <span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span>
         </button>
       </div>
@@ -38,7 +47,7 @@
     </form>
 
     <form class="form-signin" v-if="isGuest" @submit.prevent="login">
-		<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
+      <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
         Sign in
       </h1>
       <input
@@ -48,8 +57,8 @@
         placeholder="Enter your name"
         required=""
         autofocus=""
-		v-model="name"
-		name="name"
+        v-model="name"
+        name="name"
       />
       <button class="btn btn-success btn-block" type="submit">
         <i class="fas fa-sign-in-alt"></i> Sign in
@@ -60,8 +69,6 @@
 </template>
 
 <script>
-import "@/firebase/init";
-import { auth } from "firebase/app";
 export default {
   name: "login",
   data() {
@@ -86,14 +93,32 @@ export default {
       this.isGuest = true;
     },
     googleLogin() {
-      var provider = new auth.GoogleAuthProvider();
-      this.signInWithPopup(provider, "Google");
+      // lazy load firebase
+      import("@/firebase/init")
+        .then(init => {
+          console.log(init.default);
+          return init.default.auth;
+        })
+        .then(auth => {
+          console.log(auth);
+          var provider = new auth.GoogleAuthProvider();
+          this.signInWithPopup(auth, provider, "Google");
+        });
     },
     facebookLogin() {
-      var provider = new auth.FacebookAuthProvider();
-      this.signInWithPopup(provider, "Facebook");
+      // lazy load firebase
+      import("@/firebase/init")
+        .then(init => {
+          console.log(init.default);
+          return init.default.auth;
+        })
+        .then(auth => {
+          console.log(auth);
+          var provider = new auth.FacebookAuthProvider();
+          this.signInWithPopup(auth, provider, "Facebook");
+        });
     },
-    signInWithPopup(provider, status) {
+    signInWithPopup(auth, provider, status) {
       auth()
         .signInWithPopup(provider)
         .then(result => {

@@ -16,6 +16,7 @@
             </span>
             <span>{{ message.message }}</span>
             <button
+              style="float: right; background-color: grey"
               v-if="name == 'Calvin Shum'"
               v-on:click="deleteMessage(message.id)"
             >
@@ -35,7 +36,8 @@
 <script>
 import CreateMessage from "@/components/CreateMessage";
 import fb from "@/firebase/init";
-
+let firestore = fb.firestore;
+console.log(firestore);
 export default {
   name: "Chat",
   props: ["name", "status"],
@@ -53,7 +55,7 @@ export default {
     }
   },
   created() {
-    let ref = fb.collection("messages").orderBy("timestamp");
+    let ref = firestore.collection("messages").orderBy("timestamp");
     let numToHide = null;
     let numToShow;
     let i = 0;
@@ -87,7 +89,7 @@ export default {
   },
   methods: {
     deleteMessage(id) {
-      fb.collection("messages")
+      firestore.collection("messages")
         .doc(id)
         .delete()
         .catch(err => {
