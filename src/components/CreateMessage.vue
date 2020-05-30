@@ -19,7 +19,8 @@
 </template>
 
 <script>
-import fb from "@/firebase/init";
+import firebase from "@/firebase/init";
+let fb = firebase.firestore;
 export default {
   name: "CreateMessage",
   props: ["name","status"],
