@@ -96,11 +96,9 @@ export default {
       // lazy load firebase
       import("@/firebase/init")
         .then(init => {
-          console.log(init.default);
           return init.default.auth;
         })
         .then(auth => {
-          console.log(auth);
           var provider = new auth.GoogleAuthProvider();
           this.signInWithPopup(auth, provider, "Google");
         });
@@ -109,11 +107,9 @@ export default {
       // lazy load firebase
       import("@/firebase/init")
         .then(init => {
-          console.log(init.default);
           return init.default.auth;
         })
         .then(auth => {
-          console.log(auth);
           var provider = new auth.FacebookAuthProvider();
           this.signInWithPopup(auth, provider, "Facebook");
         });
