@@ -25,13 +25,6 @@
               v-model="message.message"
               v-on:keyup.enter="editMessage(message)"
             />
-            <button
-              style="float: right; background-color: grey;"
-              v-if="status == 'Admin'"
-              v-on:click="deleteMessage(message.id)"
-            >
-              Delete
-            </button>
             <span class="text-secondary time">{{ message.timestamp + ` ${message.updatedBy?"updated by: " + message.updatedBy:""}` }}</span>
           </div>
         </div>
