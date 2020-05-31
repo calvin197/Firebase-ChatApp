@@ -23,7 +23,7 @@ import firebase from "@/firebase/init";
 let fb = firebase.firestore;
 export default {
   name: "CreateMessage",
-  props: ["name","status"],
+  props: ["name","status","room"],
   data() {
     return {
       newMessage: null,
@@ -33,7 +33,7 @@ export default {
   methods: {
     createMessage() {
       if (this.newMessage) {
-        fb.collection("messages")
+        fb.collection(this.room)
           .add({
             message: this.newMessage,
             name: this.name,
