@@ -1,7 +1,9 @@
 <template>
   <div class="chat container">
     <h2 class="text-primary text-center">Real-Time Chat</h2>
-    <h5 class="text-secondary text-center">Welcome to {{activeRoom.toUpperCase()}}, {{ name }}!</h5>
+    <h5 class="text-secondary text-center">
+      Welcome to {{ activeRoom.toUpperCase() }}, {{ name }}!
+    </h5>
     <select class="browser-default custom-select" v-model="room">
       <option disabled value="">Select a room</option>
       <option v-for="room in rooms" v-bind:key="room" v-bind:value="room">

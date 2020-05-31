@@ -1,6 +1,6 @@
 <template>
   <div id="logreg-forms">
-    <form class="form-signin" v-if="!isGuest">
+    <form class="form-signin" @submit.prevent="emailLogin" v-if="!isGuest">
       <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
         Sign in
       </h1>
@@ -33,6 +33,7 @@
         placeholder="Email address"
         required=""
         autofocus=""
+        v-model="email"
       />
       <input
         type="password"
@@ -40,6 +41,7 @@
         class="form-control"
         placeholder="Password"
         required=""
+        v-model="password"
       />
       <button class="btn btn-success btn-block" type="submit">
         <i class="fas fa-sign-in-alt"></i> Sign in
@@ -84,7 +86,9 @@ export default {
     return {
       name: "",
       errorText: null,
-      isGuest: false
+      isGuest: false,
+      email: "",
+      password: ""
     };
   },
   methods: {
@@ -153,6 +157,32 @@ export default {
           console.log(`email: ${email}`);
           var credential = error.credential;
           console.log(`credential: ${credential}`);
+        });
+    },
+    emailLogin() {
+      const admin = "admin@brandboom.com";
+      let loginStatus = "Email";
+      import("@/firebase/init")
+        .then(init => {
+          return init.default.auth;
+        })
+        .then(auth => {
+          auth()
+            .signInWithEmailAndPassword(this.email, this.password)
+            .then(
+              info => {
+                let userName = info.user.displayName? info.user.displayName : info.user.email;
+                alert(`You are logged in as ${info.user.email}`);
+                if (info.user.email == admin) loginStatus = "Admin";
+                this.$router.push({
+                  name: "Chat",
+                  params: { name: userName, status: loginStatus }
+                });
+              },
+              err => {
+                alert(err.message);
+              }
+            );
         });
     }
   }
