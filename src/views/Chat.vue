@@ -26,16 +26,8 @@
               placeholder="edit message"
               name="edit"
               v-model="message.message"
-              ref="updateFieldRef"
               v-on:keyup.enter="editMessage(message)"
             />
-            <button
-              style="float: right; background-color: grey;"
-              v-if="status == 'Admin' && !message.update"
-              v-on:click="onClickUpdate(message, message.name, message.status)"
-            >
-              Update
-            </button>
             <button
               style="float: right; background-color: grey;"
               v-if="status == 'Admin'"
@@ -43,7 +35,7 @@
             >
               Delete
             </button>
-            <span class="text-secondary time">{{ message.timestamp }}</span>
+            <span class="text-secondary time">{{ message.timestamp + ` ${message.updatedBy?"updated by: " + message.updatedBy:""}` }}</span>
           </div>
         </div>
       </div>
@@ -91,6 +83,7 @@ export default {
           for (let i = 0; i < this.messages.length; i++) {
             if (this.messages[i].id == doc.id) {
               this.messages[i].message = doc.data().message;
+              this.messages[i].updatedBy = doc.data().updatedBy;
             }
           }
         }
@@ -111,7 +104,8 @@ export default {
             timestamp: this.format(doc.data().timestamp),
             status: doc.data().status,
             hide: false,
-            update: false
+            update: false,
+            updatedBy: doc.data().updatedBy
           });
         }
         i++;
@@ -135,15 +129,16 @@ export default {
         firestore
           .collection("messages")
           .doc(doc.id)
-          .update({ message: doc.message })
+          .update({ message: doc.message, updatedBy: this.name })
           .then(() => {
             doc.update = false;
+            doc.updatedBy = this.name;
           })
           .catch(err => {
             console.log(err);
           });
     },
-    isEditable(doc, name, status){
+    isEditable(doc, name, status) {
       if (doc.status == "Guest") return false;
       if (doc.name !== name) return false;
       if (doc.status !== status) return false;
@@ -151,7 +146,7 @@ export default {
     },
     onClickUpdate(doc, name, status) {
       // Only allow same verified user to edit message
-      if (!this.isEditable(doc, name, status)) return;
+      if (status !== "Admin" && !this.isEditable(doc, name, status)) return;
       doc.update = true;
     },
     format(timestamp) {
@@ -159,11 +154,11 @@ export default {
       newDate.setTime(timestamp);
       return newDate.toLocaleTimeString();
     },
-    editableMessage: function (doc, name, status) {
-    return {
-      editable: this.isEditable(doc, name, status)
+    editableMessage: function(doc, name, status) {
+      return {
+        editable: this.isEditable(doc, name, status)
+      };
     }
-  }
   }
 };
 </script>

@@ -38,7 +38,8 @@ export default {
             message: this.newMessage,
             name: this.name,
             timestamp: Date.now(),
-            status: this.status
+            status: this.status,
+            updatedBy: ""
           })
           .catch(err => {
             console.log(err);
