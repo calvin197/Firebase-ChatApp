@@ -90,7 +90,7 @@ export default {
   methods: {
     login() {
       if (this.name) {
-        if (this.name == "admin")
+        if (this.name.toUpperCase() == "ADMIN")
           this.$router.push({
             name: "Chat",
             params: { name: this.name, status: "Admin" }
