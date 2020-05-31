@@ -14,10 +14,31 @@
                 message.status ? message.status : "unknown"
               }}:
             </span>
-            <span>{{ message.message }}</span>
+            <span
+              v-if="!message.update"
+              v-on:click="onClickUpdate(message, name, status)"
+              v-bind:class="editableMessage(message, name, status)"
+              >{{ message.message }}</span
+            >
+            <input
+              v-if="message.update"
+              type="text"
+              placeholder="edit message"
+              name="edit"
+              v-model="message.message"
+              ref="updateFieldRef"
+              v-on:keyup.enter="editMessage(message)"
+            />
             <button
-              style="float: right; background-color: grey"
-              v-if="name == 'Calvin Shum'"
+              style="float: right; background-color: grey;"
+              v-if="status == 'Admin' && !message.update"
+              v-on:click="onClickUpdate(message, message.name, message.status)"
+            >
+              Update
+            </button>
+            <button
+              style="float: right; background-color: grey;"
+              v-if="status == 'Admin'"
               v-on:click="deleteMessage(message.id)"
             >
               Delete
@@ -65,6 +86,15 @@ export default {
       if (numToHide == null) numToHide = snapshot.size - numToShow;
       snapshot.docChanges().forEach(change => {
         let doc = change.doc;
+        // modified
+        if (change.type == "modified") {
+          for (let i = 0; i < this.messages.length; i++) {
+            if (this.messages[i].id == doc.id) {
+              this.messages[i].message = doc.data().message;
+            }
+          }
+        }
+        // remove
         if (change.type == "removed") {
           for (let i = 0; i < this.messages.length; i++) {
             if (this.messages[i].id == doc.id) {
@@ -72,6 +102,7 @@ export default {
             }
           }
         }
+        //add
         if (i >= numToHide && change.type == "added") {
           this.messages.push({
             id: doc.id,
@@ -79,7 +110,8 @@ export default {
             message: doc.data().message,
             timestamp: this.format(doc.data().timestamp),
             status: doc.data().status,
-            hide: false
+            hide: false,
+            update: false
           });
         }
         i++;
@@ -88,18 +120,50 @@ export default {
   },
   methods: {
     deleteMessage(id) {
-      firestore.collection("messages")
+      firestore
+        .collection("messages")
         .doc(id)
         .delete()
         .catch(err => {
           console.log(err);
         });
     },
+    editMessage(doc) {
+      // Delete the message if the input message is empty
+      if (doc.message == "") this.deleteMessage(doc.id);
+      else
+        firestore
+          .collection("messages")
+          .doc(doc.id)
+          .update({ message: doc.message })
+          .then(() => {
+            doc.update = false;
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    },
+    isEditable(doc, name, status){
+      if (doc.status == "Guest") return false;
+      if (doc.name !== name) return false;
+      if (doc.status !== status) return false;
+      return true;
+    },
+    onClickUpdate(doc, name, status) {
+      // Only allow same verified user to edit message
+      if (!this.isEditable(doc, name, status)) return;
+      doc.update = true;
+    },
     format(timestamp) {
       var newDate = new Date();
       newDate.setTime(timestamp);
       return newDate.toLocaleTimeString();
+    },
+    editableMessage: function (doc, name, status) {
+    return {
+      editable: this.isEditable(doc, name, status)
     }
+  }
   }
 };
 </script>
@@ -127,5 +191,9 @@ export default {
 .messages {
   max-height: 300px;
   overflow: auto;
+}
+
+.editable {
+  font-weight: bold;
 }
 </style>

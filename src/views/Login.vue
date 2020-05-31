@@ -45,14 +45,14 @@
         <i class="fas fa-sign-in-alt"></i> Sign in
       </button>
 
-        <router-link
-          to="/register"
-          id="btn-signup"
-          tag="button"
-          class="btn btn-primary btn-block"
-          > Sign up New Account</router-link
-        >
-
+      <router-link
+        to="/register"
+        id="btn-signup"
+        tag="button"
+        class="btn btn-primary btn-block"
+      >
+        Sign up New Account</router-link
+      >
     </form>
 
     <form class="form-signin" v-if="isGuest" @submit.prevent="login">
@@ -90,10 +90,16 @@ export default {
   methods: {
     login() {
       if (this.name) {
-        this.$router.push({
-          name: "Chat",
-          params: { name: this.name, status: "Guest" }
-        });
+        if (this.name == "admin")
+          this.$router.push({
+            name: "Chat",
+            params: { name: this.name, status: "Admin" }
+          });
+        else
+          this.$router.push({
+            name: "Chat",
+            params: { name: this.name, status: "Guest" }
+          });
       } else {
         this.errorText = "Please enter a name first!";
       }
