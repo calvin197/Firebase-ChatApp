@@ -1,38 +1,41 @@
 <template>
-    <div class="card">
-      <div class="card-body">
-        <p class="nomessages text-secondary" v-if="activeMessages.length == 0">
-          [No messages yet!]
-        </p>
-        <div class="messages" v-chat-scroll="{ always: false, smooth: true }">
-          <div v-for="message in activeMessages" :key="message.id">
-            <span class="text-info"
-              >[{{ message.name }}]-{{
-                message.status ? message.status : "unknown"
-              }}:
-            </span>
-            <span
-              v-if="!message.update"
-              v-on:click="onClickUpdate(message, name, status)"
-              v-bind:class="editableMessage(message, name, status)"
-              >{{ message.message }}</span
-            >
-            <input
-              v-if="message.update"
-              type="text"
-              placeholder="edit message"
-              name="edit"
-              v-model="message.message"
-              v-on:keyup.enter="editMessage(message)"
-            />
-            <span class="text-secondary time">{{ message.timestamp + ` ${message.updatedBy?"updated by: " + message.updatedBy:""}` }}</span>
-          </div>
+  <div class="card">
+    <div class="card-body">
+      <p class="nomessages text-secondary" v-if="activeMessages.length == 0">
+        [No messages yet!]
+      </p>
+      <div class="messages" v-chat-scroll="{ always: false, smooth: true }">
+        <div v-for="message in activeMessages" :key="message.id">
+          <span class="text-info"
+            >{{ message.name }}-{{
+              message.status ? message.status : "unknown"
+            }}:
+          </span>
+          <span
+            v-if="!message.update"
+            v-on:click="onClickUpdate(message, name, status)"
+            v-bind:class="editableMessage(message, name, status)"
+            >{{ message.message }}</span
+          >
+          <input
+            v-if="message.update"
+            type="text"
+            placeholder="edit message"
+            name="edit"
+            v-model="message.message"
+            v-on:keyup.enter="editMessage(message)"
+          />
+          <span class="text-secondary time">{{
+            message.timestamp +
+              ` ${message.updatedBy ? "updated by: " + message.updatedBy : ""}`
+          }}</span>
         </div>
       </div>
-      <div class="card-action">
-        <CreateMessage :name="name" :status="status" :room="room" />
-      </div>
     </div>
+    <div class="card-action">
+      <CreateMessage :name="name" :status="status" :room="room" />
+    </div>
+  </div>
 </template>
 
 <script>

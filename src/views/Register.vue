@@ -5,12 +5,22 @@
         Register
       </h1>
       <input
+        type="text"
+        id="inputName"
+        class="form-control"
+        placeholder="Display Name (Optional)"
+        required=""
+        autofocus=""
+        v-model="displayName"
+      />
+      <input
         type="email"
         id="inputEmail"
         class="form-control"
         placeholder="Email address"
         required=""
         autofocus=""
+        v-model="email"
       />
       <input
         type="password"
@@ -18,8 +28,13 @@
         class="form-control"
         placeholder="Password"
         required=""
+        v-model="password"
       />
-      <button class="btn btn-success btn-block" type="submit">
+      <button
+        v-on:click="register"
+        class="btn btn-success btn-block"
+        type="submit"
+      >
         <i class="fas fa-sign-in-alt"></i> Register
       </button>
     </form>
@@ -28,11 +43,51 @@
 
 <script>
 export default {
-    name: 'register',
-    data: function () {
-        return {}
+  name: "register",
+  data: function() {
+    return {
+      email: "",
+      password: "",
+      displayName: ""
+    };
+  },
+  methods: {
+    register: function(e) {
+      let that = this;
+      import("@/firebase/init")
+        .then(init => {
+          return init.default.auth;
+        })
+        .then(auth => {
+          auth()
+            .createUserWithEmailAndPassword(this.email, this.password)
+            .then(
+              info => {
+                info.user
+                  .updateProfile({
+                    displayName: this.displayName
+                  })
+                  .then(
+                    () => {
+                      console.log(info);
+                      alert(`Account created for ${info.user.email}`);
+                      that.$router.push("/");
+                    },
+                    error => {
+                      console.log(error);
+                    }
+                  );
+              },
+              err => {
+                alert(err.message);
+              }
+            );
+        });
+
+      e.preventDefault();
     }
-}
+  }
+};
 </script>
 
 <style>
