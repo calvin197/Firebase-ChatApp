@@ -44,6 +44,15 @@
       <button class="btn btn-success btn-block" type="submit">
         <i class="fas fa-sign-in-alt"></i> Sign in
       </button>
+
+        <router-link
+          to="/register"
+          id="btn-signup"
+          tag="button"
+          class="btn btn-primary btn-block"
+          > Sign up New Account</router-link
+        >
+
     </form>
 
     <form class="form-signin" v-if="isGuest" @submit.prevent="login">
