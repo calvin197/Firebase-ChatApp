@@ -70,8 +70,8 @@ $ npm run serve
 - Users who sign in using Facebook/ Google/ email are classified as verified user
 - Can read 20 past messages in each chat room after log in
 - Can write new message
-- Can edit his/her own messages and it will leave a record
-- Can delete his/her own messages
+- Can edit his/ her own messages and it will leave a record
+- Can delete his/ her own messages
 
 ### How to switch to other chat room
 
