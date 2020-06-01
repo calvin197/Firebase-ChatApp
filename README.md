@@ -8,7 +8,8 @@
 
 # Firebase-ChatApp
 
-> This is a Chat App built with Firebase and Vue.js
+> This is a Chat App built with Firebase, Vue.js, Node.js, Bootstrap and Font Awesome and deployed using Heroku
+> <a href="https://vue-js-firebase-chat-app.herokuapp.com/">Deployed website</a>
 
 ## Table of Contents
 
@@ -47,7 +48,9 @@ $ npm run serve
 ### How to edit a message
 
 **1) Click on the message content**
+
 **2) Edit the text in the text box**
+
 **3) Press Enter/ Return**
 
 ![Recordit GIF](http://g.recordit.co/gShLErgpAZ.gif)
@@ -55,7 +58,9 @@ $ npm run serve
 ### How to delete a message
 
 **1) Click on the message content**
+
 **2) Delete the text in the text box**
+
 **3) Press Enter/ Return**
 
 ![Recordit GIF](http://g.recordit.co/3r7t8EcRpd.gif)
