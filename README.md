@@ -4,6 +4,8 @@
 
 > It is deployed using Heroku: <a href="https://vue-js-firebase-chat-app.herokuapp.com/">https://vue-js-firebase-chat-app.herokuapp.com/</a>
 
+> This Chat App has achieved a 99% Google PageSpeed Insights score
+
 <a href="https://www.flickr.com/photos/188674698@N05/49957567913/in/dateposted-public/"><img src="https://live.staticflickr.com/65535/49957567913_85dce131be_b.jpg" title="Login"></a>
 
 ***Login Page***
@@ -104,7 +106,7 @@ $ npm run serve
 
 ## Performance
 
-> To optimize the web site performance, several techniques are used
+> To optimize the web site performance, the following techniques are used: 
 
 ### Gzip and Brotli compression webpack plugin
 
@@ -137,8 +139,7 @@ format(timestamp) {
 
 ```javascript
 // vue-chat1/src/router/index.js
-// line 5-8
-Vue.use(VueRouter);
+// line 6-8
 function lazyLoad(view){
   return() => import(`@/views/${view}.vue`)
 }
@@ -149,17 +150,17 @@ function lazyLoad(view){
 ```javascript
 // vue-chat1/src/views/Login.vue
 // line 114-124
-    googleLogin() {
-      // lazy load firebase
-      import("@/firebase/init")
-        .then(init => {
-          return init.default.auth;
-        })
-        .then(auth => {
-          var provider = new auth.GoogleAuthProvider();
-          this.signInWithPopup(auth, provider, "Google");
-        });
-    }
+googleLogin() {
+  // lazy load firebase
+  import("@/firebase/init")
+    .then(init => {
+      return init.default.auth;
+    })
+    .then(auth => {
+      var provider = new auth.GoogleAuthProvider();
+      this.signInWithPopup(auth, provider, "Google");
+    });
+}
 ```
 
 ### Preconnect
