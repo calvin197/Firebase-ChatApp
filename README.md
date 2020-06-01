@@ -46,45 +46,45 @@ $ npm run serve
 
 ### How to edit a message
 
-- **1) Click on the message content**
-- **2) Edit the text in the text box**
-- **3) Press Enter/ Return**
+**1) Click on the message content**
+**2) Edit the text in the text box**
+**3) Press Enter/ Return**
 
 ![Recordit GIF](http://g.recordit.co/gShLErgpAZ.gif)
 
 ### How to delete a message
 
-- **1) Click on the message content**
-- **2) Delete the text in the text box**
-- **3) Press Enter/ Return**
+**1) Click on the message content**
+**2) Delete the text in the text box**
+**3) Press Enter/ Return**
 
 ![Recordit GIF](http://g.recordit.co/3r7t8EcRpd.gif)
 
 ### Sign in/ Register methods
 
-- **1) Facebook**
+**1) Facebook**
 
-- **2) Google+**
+**2) Google+**
 
-- **3) Email/ Password+**
+**3) Email/ Password+**
 
 ### Type of Users
 
 > There are three types of users and they have different user permissions: 
 
-- **1) admin**
+**1) admin**
 - Can read all 50 past messages in each chat room after log in
 - Can write new message
 - Can edit any user's messages and it will leave a record
 - Can delete any user's messages
 
-- **2) unverified users**
+**2) unverified users**
 - Users who sign in as guest are classified as unverified user
 - Cannot read any past message in any chat room after log in
 - Can write new message
 - Cannot edit/ delete any message
 
-- **2) verified users**
+**3) verified users**
 - Users who sign in using Facebook/ Google/ email are classified as verified user
 - Can read 20 past messages in each chat room after log in
 - Can write new message
