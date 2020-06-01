@@ -183,7 +183,15 @@ googleLogin() {
 
 ## Tests 
 
-> Unit test will be added and integrated with Circle CI.
+> Unit tests with Jest have be added and integrated with Github, Circle CI and Heroku CD. 
+
+> When a commit gets pushed to the master branch, Circle CI will build and test the latest build: 
+
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/188674698@N05/49959826837/in/dateposted-public/" title="Screen Shot 2020-06-01 at 4.55.52 AM"><img src="https://live.staticflickr.com/65535/49959826837_d51268223f_b.jpg" alt="Screen Shot 2020-06-01 at 4.55.52 AM"></a>
+
+> If all unit tests get passed, Heroku will start auto-deployment:
+
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/188674698@N05/49959545241/in/dateposted-public/" title="Screen Shot 2020-06-01 at 4.56.12 AM"><img src="https://live.staticflickr.com/65535/49959545241_a7c9671110_b.jpg" alt="Screen Shot 2020-06-01 at 4.56.12 AM"></a>
 
 > Run unit test
 
