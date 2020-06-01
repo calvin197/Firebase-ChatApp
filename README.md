@@ -26,7 +26,7 @@
 
 ### Setup
 
-> Install npm and bower packages and compiles and hot-reload for development
+> Install npm packages and compiles and hot-reload for development
 
 ```shell
 $ npm install
