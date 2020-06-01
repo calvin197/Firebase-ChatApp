@@ -4,7 +4,7 @@
 
 > It is deployed using Heroku: <a href="https://vue-js-firebase-chat-app.herokuapp.com/">https://vue-js-firebase-chat-app.herokuapp.com/</a>
 
-> This Chat App has achieved a 99% Google PageSpeed Insights score
+> This Chat App has achieved a <a href="https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fvue-js-firebase-chat-app.herokuapp.com%2F&tab=desktop">95+% Google PageSpeed Insights score </a>
 
 <a href="https://www.flickr.com/photos/188674698@N05/49957567913/in/dateposted-public/"><img src="https://live.staticflickr.com/65535/49957567913_85dce131be_b.jpg" title="Login"></a>
 
