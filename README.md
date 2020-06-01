@@ -44,11 +44,11 @@ $ npm run serve
 
 ### Sign in/ Register methods
 
-1) Facebook**
+1) Facebook
 
-2) Google+**
+2) Google+
 
-3) Email/ Password**
+3) Email/ Password
 
 ### Type of Users
 
