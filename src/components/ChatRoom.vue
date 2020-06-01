@@ -7,9 +7,8 @@
       <div class="messages" v-chat-scroll="{ always: false, smooth: true }">
         <div v-for="message in activeMessages" :key="message.id">
           <span class="text-info"
-            >{{ message.name }}-{{
-              message.status ? message.status : "unknown"
-            }}:
+            ><i v-bind:class="messageIcon(message.status)" />
+            {{ message.name }}:
           </span>
           <span
             v-if="!message.update"
@@ -150,6 +149,37 @@ export default {
       return {
         editable: this.isEditable(doc, name, status)
       };
+    },
+    messageIcon: function(status) {
+      switch (status) {
+        case "Facebook":
+          return {
+            "fa-facebook-f": true,
+            fab: true
+          };
+        case "Google":
+          return {
+            "fa-google-plus-g": true,
+            fab: true
+          };
+        case "Guest":
+          return {
+            "fa-user": true,
+            fas: true
+          };
+        case "Email":
+          return {
+            "fa-envelope-square": true,
+            fas: true
+          };
+        case "Admin":
+          return {
+            "fa-user-tie": true,
+            fas: true
+          };
+        default:
+          return {};
+      }
     }
   }
 };
