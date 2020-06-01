@@ -1,3 +1,8 @@
+# Firebase-ChatApp
+
+> This is a Chat App built with Firebase, Vue.js, Node.js, Bootstrap and Font Awesome and deployed using Heroku
+> Deployed Website: <a href="https://vue-js-firebase-chat-app.herokuapp.com/">https://vue-js-firebase-chat-app.herokuapp.com/</a>
+
 <a href="https://www.flickr.com/photos/188674698@N05/49957567913/in/dateposted-public/"><img src="https://live.staticflickr.com/65535/49957567913_85dce131be_b.jpg" title="Login"></a>
 
 ***Login Page***
@@ -5,11 +10,6 @@
 <a href="https://www.flickr.com/photos/188674698@N05/49958065786/in/dateposted-public/"><img src="https://live.staticflickr.com/65535/49958065786_73651d02c1_b.jpg" title="Chat"></a>
 
 ***Chat Page***
-
-# Firebase-ChatApp
-
-> This is a Chat App built with Firebase, Vue.js, Node.js, Bootstrap and Font Awesome and deployed using Heroku
-> <a href="https://vue-js-firebase-chat-app.herokuapp.com/">Deployed website</a>
 
 ## Table of Contents
 
@@ -71,7 +71,7 @@ $ npm run serve
 
 **2) Google+**
 
-**3) Email/ Password+**
+**3) Email/ Password**
 
 ### Type of Users
 
