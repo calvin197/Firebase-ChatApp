@@ -42,34 +42,6 @@ $ npm run serve
 
 > For each chat room, there is a max number of 50 messages. When the number of messages exceed 50, the oldest message will be deleted. This is done by Firebase Cloud Functions.
 
-### How to switch to other chat room
-
-![Recordit GIF](http://g.recordit.co/7tmwXgpIFw.gif)
-
-### How to send a message
-
-![Recordit GIF](http://g.recordit.co/ufJa2n0Kdg.gif)
-
-### How to edit a message
-
-1) Click on the message content**
-
-2) Edit the text in the text box**
-
-3) Press Enter/ Return**
-
-![Recordit GIF](http://g.recordit.co/gShLErgpAZ.gif)
-
-### How to delete a message
-
-1) Click on the message content**
-
-2) Delete the text in the text box**
-
-3) Press Enter/ Return**
-
-![Recordit GIF](http://g.recordit.co/3r7t8EcRpd.gif)
-
 ### Sign in/ Register methods
 
 1) Facebook**
@@ -100,6 +72,34 @@ $ npm run serve
 - Can write new message
 - Can edit his/her own messages and it will leave a record
 - Can delete his/her own messages
+
+### How to switch to other chat room
+
+![Recordit GIF](http://g.recordit.co/7tmwXgpIFw.gif)
+
+### How to send a message
+
+![Recordit GIF](http://g.recordit.co/ufJa2n0Kdg.gif)
+
+### How to edit a message
+
+1) Click on the message content**
+
+2) Edit the text in the text box**
+
+3) Press Enter/ Return**
+
+![Recordit GIF](http://g.recordit.co/gShLErgpAZ.gif)
+
+### How to delete a message
+
+1) Click on the message content**
+
+2) Delete the text in the text box**
+
+3) Press Enter/ Return**
+
+![Recordit GIF](http://g.recordit.co/3r7t8EcRpd.gif)
 
 ## Tests 
 
