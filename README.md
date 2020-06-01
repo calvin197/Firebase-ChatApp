@@ -16,6 +16,7 @@
 
 - [Installation](#installation)
 - [Features](#features)
+- [Performance](#performance)
 - [Tests](#tests)
 
 ## Installation
@@ -101,7 +102,85 @@ $ npm run serve
 
 ![Recordit GIF](http://g.recordit.co/3r7t8EcRpd.gif)
 
+## Performance
+
+> To optimize the web site performance, several techniques are used
+
+### Gzip and Brotli compression webpack plugin
+
+> Both Gzip and Brotli are compression algorithms used to compress Javascript/ HTML/ CSS files. After applying the compression plugins, the bundle size are significantly(~ 75%) lighter than before. 
+
+```shell
+$ npm install brotli-webpack-plugin compression-webpack-plugin express-static-gzip
+
+```
+
+### Removed heavy dependency (e.g. Moment.js)
+
+> The size of Moment.js is massive. It was removed and replaced with native JS code (see the following code). After removing Moment.js, the largest JS bundle size reduced more than 350KB (around 30-40% of the original bundle size). 
+
+```javascript
+// vue-chat1/src/components/ChatRoom.vue
+// line 143-147
+format(timestamp) {
+    var newDate = new Date();
+    newDate.setTime(timestamp);
+    return newDate.toLocaleTimeString();
+}
+```
+
+### Lazy loading 
+
+> ES6 import() was used to import dependencies(e.g. Firebase) / components dynamically. Dependencies/ components are imported only when they are needed. The Javascript bundle is split into multiple smaller bundles and hence the web site loads way faster because it only loads necessary components. 
+
+> Notice how different components are lazy loaded in vue-chat1/src/router/index.js
+
+```javascript
+// vue-chat1/src/router/index.js
+// line 5-8
+Vue.use(VueRouter);
+function lazyLoad(view){
+  return() => import(`@/views/${view}.vue`)
+}
+```
+
+> Notice how firebase is lazy loaded in vue-chat1/src/views/Login.vue
+
+```javascript
+// vue-chat1/src/views/Login.vue
+// line 114-124
+    googleLogin() {
+      // lazy load firebase
+      import("@/firebase/init")
+        .then(init => {
+          return init.default.auth;
+        })
+        .then(auth => {
+          var provider = new auth.GoogleAuthProvider();
+          this.signInWithPopup(auth, provider, "Google");
+        });
+    }
+```
+
+### Preconnect
+
+> Preconnect is a method that performs DNS lookups ahead of time so that by the time you make a request to your server, your browser already knows where to make the request.
+
+> vue-chat1/public/index.html
+
+```html
+<link rel="preconnect" href="https://vue-js-firebase-chat-app.herokuapp.com/">
+```
+
+### Result
+
+> <a href="https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fvue-js-firebase-chat-app.herokuapp.com%2F&tab=desktop">https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fvue-js-firebase-chat-app.herokuapp.com%2F&tab=desktop</a>
+
+<a href="https://www.flickr.com/photos/188674698@N05/49958784637/in/dateposted-public/"><img src="https://live.staticflickr.com/65535/49958784637_69785d0478_b.jpg" title="result"></a>
+
 ## Tests 
+
+> Unit test will be added and integrated with Circle CI.
 
 > Run unit test
 
