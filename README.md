@@ -41,7 +41,7 @@ $ npm run serve
 
 ## Features
 
-### Max number in the database
+### Max number of messages in the database
 
 > For each chat room, there is a max number of 50 messages. When the number of messages exceed 50, the oldest message will be deleted. This is done by Firebase Cloud Functions.
 
@@ -86,21 +86,21 @@ $ npm run serve
 
 ### How to edit a message
 
-1) Click on the message content**
+1) Click on the message content
 
-2) Edit the text in the text box**
+2) Edit the text in the text box
 
-3) Press Enter/ Return**
+3) Press Enter/ Return
 
 ![Recordit GIF](http://g.recordit.co/gShLErgpAZ.gif)
 
 ### How to delete a message
 
-1) Click on the message content**
+1) Click on the message content
 
-2) Delete the text in the text box**
+2) Delete the text in the text box
 
-3) Press Enter/ Return**
+3) Press Enter/ Return
 
 ![Recordit GIF](http://g.recordit.co/3r7t8EcRpd.gif)
 
@@ -174,6 +174,8 @@ googleLogin() {
 ```
 
 ### Result
+
+> 95+% Google PageSpeed Insights score
 
 > <a href="https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fvue-js-firebase-chat-app.herokuapp.com%2F&tab=desktop">https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fvue-js-firebase-chat-app.herokuapp.com%2F&tab=desktop</a>
 
